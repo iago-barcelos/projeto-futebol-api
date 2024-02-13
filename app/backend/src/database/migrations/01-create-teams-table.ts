@@ -1,5 +1,4 @@
 import { DataTypes, Model, QueryInterface } from "sequelize";
-import { TeamType } from "../../Interfaces/teams/ITeamModel";
 
 type TeamModel = {
 	id: number;
