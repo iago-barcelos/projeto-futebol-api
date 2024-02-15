@@ -3,11 +3,11 @@ import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
 
-import { App, app } from '../../app';
-import Example from '../../database/models/ExampleModel';
+import { App, app } from '../app';
+import Example from '../database/models/ExampleModel';
 
 import { Response } from 'superagent';
-import SequelizeTeam from '../../database/models/SequelizeTeam';
+import SequelizeTeam from '../database/models/SequelizeTeam';
 import { afterEach } from 'mocha';
 
 chai.use(chaiHttp);
