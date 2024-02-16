@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import UserService from '../services/UserService';
+import mapStatusHTTP from '../utils/mapStatusHTTP';
 
 export default class UserController {
   constructor(
@@ -10,6 +11,6 @@ export default class UserController {
     const { email, password } = req.body;
     const service = await this.userService.login(email, password);
 
-    res.status(200).json(service.data);
+    res.status(mapStatusHTTP(service.status)).json(service.data);
   }
 }
