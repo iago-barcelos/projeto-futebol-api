@@ -7,9 +7,9 @@ export default class UserValidation {
     res: Response,
     next: NextFunction,
   ): ServiceResponse<Response> | void {
-    const { loginEmail, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!loginEmail || !password) {
+    if (!email || !password) {
       return {
         status: 'INVALID_DATA', data: { message: 'All fields must be filled' },
       };

@@ -42,7 +42,7 @@ SequelizeUser.init({
 }, {
   sequelize: db,
   underscored: true,
-  modelName: 'teams',
+  modelName: 'users',
   timestamps: false,
 });
 

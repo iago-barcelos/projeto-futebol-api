@@ -9,6 +9,8 @@ import Example from '../database/models/ExampleModel';
 import { Response } from 'superagent';
 import SequelizeTeam from '../database/models/SequelizeTeam';
 import { afterEach } from 'mocha';
+import mocks from './mocks/teams.mock';
+
 
 chai.use(chaiHttp);
 
@@ -44,21 +46,21 @@ describe('Teams teste', function() {
   // });
 
   it('Deve retornar status 200 e todos os teams', async function() {
-    sinon.stub(SequelizeTeam, 'findAll').resolves(getAllTeamsMock as any);
+    sinon.stub(SequelizeTeam, 'findAll').resolves(mocks.getAllTeamsMock as any);
 
     const { status, body } = await chai.request(app).get('/teams');
 
     expect(status).to.be.equal(200);
-    expect(body).to.be.deep.equal(getAllTeamsMock);
+    expect(body).to.be.deep.equal(mocks.getAllTeamsMock);
   });
 
   it('Deve retornar status 200 e um time por ID', async function() {
-    sinon.stub(SequelizeTeam, 'findOne').resolves(getTeamByIdMock as any);
+    sinon.stub(SequelizeTeam, 'findOne').resolves(mocks.getTeamByIdMock as any);
 
     const { status, body } = await chai.request(app).get('/teams/1');
 
     expect(status).to.be.equal(200);
-    expect(body).to.be.deep.equal(getTeamByIdMock);
+    expect(body).to.be.deep.equal(mocks.getTeamByIdMock);
   });
 
   it('Deve retornar status 404 caso não encontre um time pelo ID', async function() {

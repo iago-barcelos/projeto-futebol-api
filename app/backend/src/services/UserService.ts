@@ -19,7 +19,7 @@ export default class UserService {
     const findUser = await this.userModel.login(loginEmail, password);
 
     if (!findUser) {
-      return { status: 'UNAUTHORIZED', data: { message: 'Username or password invalid' } };
+      return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
     }
 
     const bcryptComparing = await bcrypt.compare(password, findUser.password);
