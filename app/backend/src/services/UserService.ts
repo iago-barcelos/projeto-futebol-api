@@ -25,7 +25,9 @@ export default class UserService {
     const bcryptComparing = await bcrypt.compare(password, findUser.password);
 
     if (!bcryptComparing) {
-      return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
+      return {
+        status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' },
+      };
     }
 
     const { id, email, role } = findUser;
