@@ -4,12 +4,10 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
 import { App } from '../app';
-import Example from '../database/models/ExampleModel';
 
-import { Response } from 'superagent';
 import SequelizeTeam from '../database/models/SequelizeTeam';
 import { afterEach } from 'mocha';
-import mocks from './mocks/teams.mock';
+import teamMocks from './mocks/teams.mock';
 
 
 chai.use(chaiHttp);
@@ -18,7 +16,7 @@ const { expect } = chai;
 
 const { app } = new App();
 
-describe('Teams teste', function() {
+describe('/teams testes', function() {
   /**
    * Exemplo do uso de stubs com tipos
    */
@@ -46,21 +44,21 @@ describe('Teams teste', function() {
   // });
 
   it('Deve retornar status 200 e todos os teams', async function() {
-    sinon.stub(SequelizeTeam, 'findAll').resolves(mocks.getAllTeamsMock as any);
+    sinon.stub(SequelizeTeam, 'findAll').resolves(teamMocks.getAllTeamsMock as any);
 
     const { status, body } = await chai.request(app).get('/teams');
 
     expect(status).to.be.equal(200);
-    expect(body).to.be.deep.equal(mocks.getAllTeamsMock);
+    expect(body).to.be.deep.equal(teamMocks.getAllTeamsMock);
   });
 
   it('Deve retornar status 200 e um time por ID', async function() {
-    sinon.stub(SequelizeTeam, 'findOne').resolves(mocks.getTeamByIdMock as any);
+    sinon.stub(SequelizeTeam, 'findOne').resolves(teamMocks.getTeamByIdMock as any);
 
     const { status, body } = await chai.request(app).get('/teams/1');
 
     expect(status).to.be.equal(200);
-    expect(body).to.be.deep.equal(mocks.getTeamByIdMock);
+    expect(body).to.be.deep.equal(teamMocks.getTeamByIdMock);
   });
 
   it('Deve retornar status 404 caso não encontre um time pelo ID', async function() {
