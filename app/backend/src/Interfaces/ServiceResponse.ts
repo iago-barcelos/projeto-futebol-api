@@ -1,7 +1,7 @@
 export type ServiceMessage = { message: string };
 
 type ServiceResponseErrorType =
-'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'CONFLICT';
+'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'CONFLICT' | 'UNPROCESSABLE ENTITY';
 
 export type ServiceResponseError = {
   status: ServiceResponseErrorType,
