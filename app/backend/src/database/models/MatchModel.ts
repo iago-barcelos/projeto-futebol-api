@@ -52,4 +52,21 @@ export default class MatchModel implements IMatchModel {
     );
     return { message: 'Finished' };
   }
+
+  async createNewMatch(
+    homeTeamId: number,
+    homeTeamGoals: number,
+    awayTeamId: number,
+    awayTeamGoals: number,
+  ): Promise<IMatch> {
+    const created = await this.model.create({
+      homeTeamId,
+      homeTeamGoals,
+      awayTeamId,
+      awayTeamGoals,
+      inProgress: true,
+    });
+
+    return created;
+  }
 }

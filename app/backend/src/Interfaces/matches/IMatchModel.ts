@@ -6,4 +6,9 @@ export default interface IMatchModel {
   getMatchesInProgress(inProgress: boolean): Promise<IMatch[]>,
   updateMatchInProgress(id: number, reqBody: IMatchUpdate): Promise<IMatch | null>
   finishMatch(id: number): Promise<{ message: string } | null>,
+  createNewMatch(homeTeamId: number,
+    homeTeamGoals: number,
+    awayTeamId: number,
+    awayTeamGoals: number,
+  ): Promise<IMatch>,
 }

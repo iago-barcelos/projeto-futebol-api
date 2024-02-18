@@ -38,4 +38,20 @@ export default class MatchService {
 
     return { status: 'SUCCESSFUL', data: match };
   }
+
+  public async createNewMatch(
+    homeTeamId: number,
+    homeTeamGoals: number,
+    awayTeamId: number,
+    awayTeamGoals: number,
+  ): Promise<ServiceResponse<IMatch>> {
+    const newMatch = await this.matchModel.createNewMatch(
+      homeTeamId,
+      homeTeamGoals,
+      awayTeamId,
+      awayTeamGoals,
+    );
+
+    return { status: 'CREATED', data: newMatch };
+  }
 }
