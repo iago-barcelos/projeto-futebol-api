@@ -6,7 +6,9 @@ import { App } from '../app';
 import { afterEach } from 'mocha';
 import SequelizeUser from '../database/models/SequelizeUser';
 import userMocks from './mocks/user.mock';
-import UserService from '../services/UserService';
+import * as jwt from 'jsonwebtoken';
+import UserValidation from '../middlewares/loginValidation';
+import Token from '../middlewares/tokenValidation';
 
 chai.use(chaiHttp);
 
@@ -15,17 +17,17 @@ const { expect } = chai;
 const { app } = new App();
 
 describe('/login testes', function () {
-  /* it('Deve retornar status 200 e um token, caso email e senha sejam válidos', async function () {
-    const foundUser = sinon.stub(SequelizeUser, 'findOne').resolves(userMocks.validUserAtDb as any);
-
-    console.log('FOUND USER: ', foundUser)
-
-    const { status, body } = await chai.request(app).post('/login');
-    console.log('CONTEÚDO DO BODY: ' , body)
-
+  it('Deve retornar status 200 e um token, caso email e senha sejam válidos', async function () {
+    sinon.stub(SequelizeUser, 'findOne').resolves(userMocks.validUserAtDb as any);
+    
+    const { status, body } = await chai.request(app).post('/login').send(userMocks.validLoginMock);
+    
+    sinon.stub(Token, 'validate').callsFake((req, res, next) => next());
+    
+    console.log(body)
     expect(status).to.be.equal(200);
-    expect(body).to.be.deep.equal(userMocks.tokenMock);
-  }) */
+    expect(body).to.have.property('token')
+  })
   
   afterEach(() => {
     sinon.restore()
