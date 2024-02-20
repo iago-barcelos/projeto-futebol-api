@@ -24,7 +24,6 @@ describe('/login testes', function () {
     
     sinon.stub(Token, 'validate').callsFake((req, res, next) => next());
     
-    console.log(body)
     expect(status).to.be.equal(200);
     expect(body).to.have.property('token')
   })
